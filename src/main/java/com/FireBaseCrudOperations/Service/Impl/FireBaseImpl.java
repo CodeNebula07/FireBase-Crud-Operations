@@ -17,4 +17,7 @@ public interface FireBaseImpl {
 
     // Deletes an existing FireBaseDto object by name
     String delete(String name);
+
+    // Retrieves a FireBaseDto object by ID
+    FireBaseDto getById(String id);
 }
