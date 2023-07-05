@@ -68,6 +68,30 @@ public class FireBaseService implements FireBaseImpl {
         }
     }
 
+     // Retrieve a Firebase document by ID
+    @Override
+    public FireBaseDto getById(String id) {
+        // Get the document snapshot for the specified ID
+        ApiFuture<DocumentSnapshot> documentSnapshotApiFuture = getCollection().document(id).get();
+        try {
+            // Check if the document exists
+            if (documentSnapshotApiFuture.get().exists()) {
+                // Convert the document to a FireBaseDto object
+                FireBaseDto post = documentSnapshotApiFuture.get().toObject(FireBaseDto.class);
+                // Set the document ID in the FireBaseDto object
+                post.setId(documentSnapshotApiFuture.get().getId());
+                // Return the FireBaseDto object
+                return post;
+            } else {
+                // Return null if the document does not exist
+                return null;
+            }
+        } catch (Exception e) {
+            // Return null if an exception occurs
+            return null;
+        }
+    }
+
     // Edit an existing Firebase document
     @Override
     public String edit(String id, FireBaseDto post) {
