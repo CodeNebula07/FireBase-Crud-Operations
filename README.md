@@ -88,6 +88,7 @@ The API provides the following endpoints for performing CRUD operations on the F
 
 - `GET /firebase/ListData` - Retrieve all resources
 - `POST /firebase/AddData` - Create a new resource
+- `PUT /firebase/GetDataById/{id}` - Get an existing resource by ID
 - `PUT /firebase/UpdateData/{id}` - Update an existing resource by ID
 - `DELETE /firebase/DeleteData/{id}` - Delete a resource by ID
 
