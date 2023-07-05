@@ -25,6 +25,17 @@ public class FireBaseController {
         String result = fireBaseImpl.add(post); // Call the 'add' method in FireBaseImpl service to add the data
         return ResponseEntity.ok(result); // Return the result as a ResponseEntity
     }
+    
+     // Endpoint to fetch data by ID
+    @GetMapping("/GetDataById/{id}")
+    public ResponseEntity<FireBaseDto> getDataById(@PathVariable String id) {
+        FireBaseDto data = fireBaseImpl.getById(id); // Call the 'getById' method in FireBaseImpl service to retrieve data by ID
+        if (data != null) {
+            return ResponseEntity.ok(data); // Return the data as a ResponseEntity if found
+        } else {
+            return ResponseEntity.notFound().build(); // Return a 404 Not Found response if data with the given ID is not found
+        }
+    }
 
     // Endpoint to list data
     @GetMapping("/ListData")
